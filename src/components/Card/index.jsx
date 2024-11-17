@@ -41,7 +41,7 @@ const Card = ({
     );
   };
   return (
-    <div className="flex card bg-base-100 w-[22rem] shadow-xl mb-6 cursor-pointer">
+    <div className="flex card bg-[white] w-[22rem] shadow-xl mb-6 cursor-pointer">
       <div className="p-4 flex justify-between">
         {renderCardLink()}
         <div className="flex flex-col gap-2">
