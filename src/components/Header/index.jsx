@@ -1,11 +1,11 @@
 import React, { memo } from "react";
-import Logo from "./../../assets/logo/emiratesnbd_new_logo.webp";
+// import Logo from "./../../assets/logo/emiratesnbd_new_logo.webp";
 import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <nav className="flex p-1 bg-[#182f7c] py-2 basis-1/4 justify-between">
       <div className="flex gap-2">
-        <img className="w-32" src={Logo} alt="logo" />
+        {/* <img className="w-32" src={Logo} alt="logo" /> */}
         <Link className="font-mono font-bold p-2 text-white" to={"/"}>
           LEAP UI
         </Link>
