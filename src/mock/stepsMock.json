@@ -1,0 +1,266 @@
+{
+    "data": {
+      "TagLine": [
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 1,
+          "data": "@ui",
+          "id": "a33fd987-b62a-4395-83ff-a00ef1b80a48",
+          "properties": {
+            "tagType": "FileTag",
+            "featureId": [
+              "f12438e5-d46b-4ce3-8730-3edb2c501ea6",
+              "e82b5a06-003f-4e6d-b8e3-0aba8ceabd38",
+              "6bb0df45-981e-4901-ae01-4a981df99bbd"
+            ],
+            "scenarioIds": [
+              "f2bcff3e-c4bd-4f57-996a-c7819079df32",
+              "526553c9-9ce8-4471-b467-c7326a38d11d",
+              "8b2fdca0-244d-44ae-bc0f-b0a908e73989",
+              "fdaebf6a-8d63-4a92-ac5f-3c943d05969a"
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 1,
+          "data": "@bar",
+          "id": "7a998e09-a7ac-47e4-a202-51b5211604a5",
+          "properties": {
+            "tagType": "FileTag",
+            "featureId": [
+              "f12438e5-d46b-4ce3-8730-3edb2c501ea6"
+            ],
+            "scenarioIds": [
+              "f2bcff3e-c4bd-4f57-996a-c7819079df32"
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 7,
+          "data": "@test",
+          "id": "6e6272b4-de02-4164-9c65-171d4956fed7",
+          "properties": {
+            "tagType": "ScenarioTag",
+            "scenarioIds": [
+              "f2bcff3e-c4bd-4f57-996a-c7819079df32",
+              "526553c9-9ce8-4471-b467-c7326a38d11d"
+            ],
+            "featureId": [
+              "e82b5a06-003f-4e6d-b8e3-0aba8ceabd38"
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 1,
+          "data": "@foo",
+          "id": "1589e66f-491d-4064-b57e-4a141a5e3b82",
+          "properties": {
+            "tagType": "FileTag",
+            "featureId": [
+              "6bb0df45-981e-4901-ae01-4a981df99bbd"
+            ],
+            "scenarioIds": [
+              "8b2fdca0-244d-44ae-bc0f-b0a908e73989",
+              "fdaebf6a-8d63-4a92-ac5f-3c943d05969a"
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 5,
+          "data": "@scene",
+          "id": "83607dcc-9178-4078-9435-57faf5f90177",
+          "properties": {
+            "tagType": "ScenarioTag",
+            "scenarioIds": [
+              "8b2fdca0-244d-44ae-bc0f-b0a908e73989"
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "TagLine",
+          "lineNumber": 5,
+          "data": "@scene2",
+          "id": "3d9e0dd4-9243-46e6-ade6-4476ffc5f915",
+          "properties": {
+            "tagType": "ScenarioTag",
+            "scenarioIds": [
+              "8b2fdca0-244d-44ae-bc0f-b0a908e73989",
+              "fdaebf6a-8d63-4a92-ac5f-3c943d05969a"
+            ]
+          }
+        }
+      ],
+      "FeatureLine": [
+        {
+          "isMatch": true,
+          "type": "FeatureLine",
+          "lineNumber": 3,
+          "data": "Feature: bar Feature name",
+          "id": "f12438e5-d46b-4ce3-8730-3edb2c501ea6",
+          "properties": {}
+        },
+        {
+          "isMatch": true,
+          "type": "FeatureLine",
+          "lineNumber": 3,
+          "data": "Feature: Feature name",
+          "id": "e82b5a06-003f-4e6d-b8e3-0aba8ceabd38",
+          "properties": {}
+        },
+        {
+          "isMatch": true,
+          "type": "FeatureLine",
+          "lineNumber": 3,
+          "data": "Feature: Foo Feature name",
+          "id": "6bb0df45-981e-4901-ae01-4a981df99bbd",
+          "properties": {}
+        }
+      ],
+      "ScenarioLine": [
+        {
+          "isMatch": true,
+          "type": "ScenarioLine",
+          "lineNumber": 8,
+          "data": "    Scenario: Bar Scenario name",
+          "id": "f2bcff3e-c4bd-4f57-996a-c7819079df32",
+          "properties": {}
+        },
+        {
+          "isMatch": true,
+          "type": "ScenarioLine",
+          "lineNumber": 7,
+          "data": "    Scenario: Scenario name",
+          "id": "526553c9-9ce8-4471-b467-c7326a38d11d",
+          "properties": {}
+        },
+        {
+          "isMatch": true,
+          "type": "ScenarioLine",
+          "lineNumber": 6,
+          "data": "    Scenario: Hello",
+          "id": "8b2fdca0-244d-44ae-bc0f-b0a908e73989",
+          "properties": {
+            "examples": [
+              [
+                "Name",
+                "Fname"
+              ],
+              [
+                "Danish",
+                "D"
+              ],
+              [
+                "Naveen",
+                "N"
+              ]
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "ScenarioLine",
+          "lineNumber": 20,
+          "data": "    Scenario: Hello2",
+          "id": "fdaebf6a-8d63-4a92-ac5f-3c943d05969a",
+          "properties": {
+            "examples": [
+              [
+                "Name",
+                "Fname"
+              ],
+              [
+                "Danish",
+                "D"
+              ],
+              [
+                "Naveen",
+                "N"
+              ]
+            ]
+          }
+        }
+      ],
+      "StepLine": [
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 9,
+          "data": "        Given Bar Step to execute",
+          "id": "214a6415-9365-417c-a9b8-d5b4e788c7ad",
+          "properties": {
+            "scenarioId": "f2bcff3e-c4bd-4f57-996a-c7819079df32"
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 8,
+          "data": "        Given Step to execute",
+          "id": "2db27bfc-451c-4027-b123-5190c9611e01",
+          "properties": {
+            "scenarioId": "526553c9-9ce8-4471-b467-c7326a38d11d"
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 7,
+          "data": "        Given Foo Step to execute",
+          "id": "85b6746f-18b0-43e9-994a-efb8f7883b55",
+          "properties": {
+            "scenarioId": "8b2fdca0-244d-44ae-bc0f-b0a908e73989"
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 11,
+          "data": "        Then I fill form with following details",
+          "id": "b519f312-8b4c-4f02-89de-da78cf3e7434",
+          "properties": {
+            "scenarioId": "8b2fdca0-244d-44ae-bc0f-b0a908e73989",
+            "dataTable": [
+              [
+                "Name",
+                "<Name>"
+              ],
+              [
+                "Fname",
+                "<Fname>"
+              ]
+            ]
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 21,
+          "data": "        Given Foo Step to execute",
+          "id": "3551626c-2892-4cf5-9e5b-968e2a530e9e",
+          "properties": {
+            "scenarioId": "fdaebf6a-8d63-4a92-ac5f-3c943d05969a"
+          }
+        },
+        {
+          "isMatch": true,
+          "type": "StepLine",
+          "lineNumber": 22,
+          "data": "        Then something",
+          "id": "460a2be2-211e-41ca-b9d7-82fa188514cb",
+          "properties": {
+            "scenarioId": "fdaebf6a-8d63-4a92-ac5f-3c943d05969a"
+          }
+        }
+      ]
+    }
+  }
