@@ -1,0 +1,78 @@
+{
+    "rows": [
+      {
+        "id": 1,
+        "col1": "Hello",
+        "col2": "World",
+        "col3": "grid",
+        "col4": "table",
+        "col5": "system",
+        "col6": "param",
+        "col7": "BAT"
+      },
+      {
+        "id": 2,
+        "col1": "Hello",
+        "col2": "World1",
+        "col3": "grid",
+        "col4": "table",
+        "col5": "system",
+        "col6": "param",
+        "col7": "BAT"
+      },
+      {
+        "id": 3,
+        "col1": "Hello",
+        "col2": "World2",
+        "col3": "grid",
+        "col4": "table",
+        "col5": "system",
+        "col6": "param",
+        "col7": "BAT"
+      }
+    ],
+    "columns": [
+      {
+        "field": "col1",
+        "headerName": "TestCaseName",
+        "width": 150,
+        "sortable": false
+      },
+      {
+        "field": "col2",
+        "headerName": "TT_Status",
+        "width": 150,
+        "editable": true
+      },
+      {
+        "field": "col3",
+        "headerName": "Payment_Status",
+        "width": 150,
+        "editable": true
+      },
+      {
+        "field": "col4",
+        "headerName": "Wait_Min",
+        "width": 150,
+        "editable": true
+      },
+      {
+        "field": "col5",
+        "headerName": "Command",
+        "width": 150,
+        "editable": true
+      },
+      {
+        "field": "col6",
+        "headerName": "TT_Entity",
+        "width": 150,
+        "editable": true
+      },
+      {
+        "field": "col7",
+        "headerName": "Environment",
+        "width": 150,
+        "editable": true
+      }
+    ]
+  }
