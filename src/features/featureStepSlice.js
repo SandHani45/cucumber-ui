@@ -3,8 +3,8 @@ import {featureStepService} from '../services/featureStep.service';
 import mapTagsFeaturesScenarios from '../utill/mapTagsFeaturesScenarios';
 
 // Async thunk for fetching tags
-export const fetchFeatureStepSlice = createAsyncThunk('tags/fetchFeatureSteps', async () => {
-  return await featureStepService();
+export const fetchFeatureStepSlice = createAsyncThunk('tags/fetchFeatureSteps', async (body) => {
+  return await featureStepService(body);
 });
 
 // Initial state
@@ -35,12 +35,11 @@ const featureStepSlice = createSlice({
       .addCase(fetchFeatureStepSlice.fulfilled, (state, action) => {
         state.loading = false;
         state.featureStep = action.payload;
-        state.tagsList = action.payload.TagLine.map((tags)=>{
+        state.tagsList =  action.payload?.TagLine?.map((tags)=>{
           return {
             ...tags, isAction: false
           }
         })
-        console.log('----mapTagsFeaturesScenarios(action.payload)', mapTagsFeaturesScenarios(action.payload))
         state.mapTagsFeaturesScenariosData = mapTagsFeaturesScenarios(action.payload)
       })
       .addCase(fetchFeatureStepSlice.rejected, (state, action) => {

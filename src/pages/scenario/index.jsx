@@ -1,5 +1,5 @@
 // src/pages/scenario.js
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Accordion, AgTable, StepLine, StringInput } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,20 +9,17 @@ import { onRunningScenario } from "../../features/globalSlice";
 const Scenario = () => {
   const { tagId } = useParams();
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+
   const { featureStep, loading, error, mapTagsFeaturesScenariosData } =
     useSelector((state) => state.featureStep);
   const { isScenarioRunning, runningScenario, runningTag } = useSelector(
     (state) => state.globalState
   );
-  useEffect(() => {
-    if (!featureStep.length) {
-      dispatch(fetchFeatureStepSlice());
-    }
-  }, [featureStep, dispatch]);
+  // useEffect(() => {
+  //   if (!featureStep.length) {
+  //    dispatch(fetchFeatureStepSlice());
+  //   }
+  // }, [featureStep.length, dispatch]);
 
   const onTestcaseRunner = useCallback(
     (tag, scenarioId) => {
@@ -33,8 +30,7 @@ const Scenario = () => {
 
   const steps =
     mapTagsFeaturesScenariosData && mapTagsFeaturesScenariosData[tagId];
-  console.log('----------------------runningScenario === scenario.id', runningScenario,runningTag)
-  const renderFeatureLine = () => {
+  const renderFeatureLine = useCallback(() => {
     return steps?.scenarioSteps?.map((scenario) => {
       const stepLine = scenario?.stepLines;
       const examples = scenario?.properties?.examples;
@@ -64,7 +60,7 @@ const Scenario = () => {
         </Accordion>
       );
     });
-  };
+  },[]);
   return (
     <div>
       {/* title section */}
@@ -97,4 +93,4 @@ const Scenario = () => {
   );
 };
 
-export default Scenario;
+export default memo(Scenario);

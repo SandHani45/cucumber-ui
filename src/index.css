@@ -23,3 +23,8 @@ p{
 h5, h1, h2, h3, h4{
   color: #001f60;
 }
+.toast-container{
+  position: absolute;
+  top: 2rem;
+  left: -8px;
+}

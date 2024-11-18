@@ -1,10 +1,8 @@
 const mapTagsFeaturesScenarios = (jsonData) => {
-  console.log('----------jsonData', jsonData);
-  const { TagLine: tagLines, ScenarioLine: scenarioLine, StepLine: stepLine } = jsonData;
   const mapping = {};
-
-  tagLines.forEach((tagLine) => {
-    const tag = tagLine.data;
+  const { TagLine: tagLines, ScenarioLine: scenarioLine, StepLine: stepLine } = jsonData;
+  tagLines && tagLines?.forEach((tagLine) => {
+    const tag = tagLine?.data;
     const scenarioIds = tagLine.properties.scenarioIds || [];
     if (!mapping[tag]) {
       mapping[tag] = { scenarioSteps: [] };

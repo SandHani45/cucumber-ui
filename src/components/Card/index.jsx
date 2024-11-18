@@ -6,7 +6,7 @@ const Card = ({
   scenarioCount = "0",
   featureCount = "0",
   onClickRun,
-  status = 16,
+  progress = 0,
   isRunning = false,
   disabled = false,
 }) => {
@@ -96,16 +96,16 @@ const Card = ({
           </button>
         </div>
       </div>
-      {!!isRunning && (
+      {/* {!!isRunning && (
         <div className="w-full flex justify-center items-center">
           <progress
             class="progress progress-warning w-60 m-4"
-            value={status}
+            value={progress}
             max="100"
           ></progress>{" "}
-          <span className="text-xs">{`${status}%`}</span>
+          <span className="text-xs">{`${progress}%`}</span>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
