@@ -2,13 +2,18 @@ import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  onAddExample
+} from "../../features/exampleSlice";
 
-const AgTable = ({ examples }) => {
+const AgTable = ({ examples, newTableData }) => {
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState([]);
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs, setColDefs] = useState([]);
-
+  const [intialCol, setIntialCol] = useState(0);
+  const dispatch = useDispatch()
   useEffect(() => {
     if (!examples) return;
     const col = examples[0]?.data?.map((item) => {
@@ -21,8 +26,8 @@ const AgTable = ({ examples }) => {
     );
     setColDefs(col);
     setRowData(rowDif);
+    setIntialCol(rowDif.length)
   }, [examples]);
-
   // Grid API and Column API references
   const gridRef = React.useRef(null);
 
@@ -48,7 +53,22 @@ const AgTable = ({ examples }) => {
         ...data,
       }; // Update the edited row
     }
-
+ 
+    if(updatedRowData.length === intialCol){
+      console.log('updatedRowData', updatedRowData, intialCol)
+      // dispatch(onExampleUpdate())
+    }else{
+      const lastLine = examples.length > 0 ? examples[examples.length - 1]?.lineNumber : 0;
+        // Slice the updatedRowData from initialCol and map to create the new row structure
+      const addNewRow = updatedRowData.slice(intialCol).map((row, index) => {
+        return {
+          data: Object.values(row), // Convert row object to an array of values
+          lineNumber: Number(`${lastLine}.${index + 1}`), // Concatenate line number with the index
+        };
+      });
+      newTableData(addNewRow)
+    }
+    // dispatch(handleExampleUpdate())
     setRowData(updatedRowData); // Update the state with the modified data
   };
 

@@ -2,32 +2,41 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import exampleMock from './../mock/example.json'
 const initialState = {
-  rows: exampleMock.rows,
-  columns: exampleMock.columns
+  exampleUpdate: [],
+  addExample: []
 };
 
+// "data": [
+// 		{
+// 			"lineNumber": 26.1,
+// 			"data": [
+// 				"shaik",
+// 				"hello"
+// 			]
+// 		},
+// 			{
+// 			"lineNumber": 26.2,
+// 			"data": [
+// 				"shaik",
+// 				"hello"
+// 			]
+// 		}
+// 	],
 const exampleSlice = createSlice({
   name: 'exampleList',
   initialState,
   reducers: {
-    getTags: ()=>{
-      
+    onExampleUpdate: (state, action)=> {
+      state.exampleUpdate = action.payload
     },
-    addNewTask: (state) => {
-      state.rows.push({
-        id: state.rows.length + 1,
-        col1: "",
-        col2: "",
-        col3: "",
-        col4: "",
-        col5: "",
-        col6: "",
-        col7: ""
-      });
-    },
+    onAddExample: (state, action)=> {
+      state.addExample = []
+      state.addExample = action.payload
+      console.log('--------state.addExample', )
+    }
   },
 });
 
-export const { addNewTask } = exampleSlice.actions;
+export const { onAddExample, onExampleUpdate } = exampleSlice.actions;
 
 export default exampleSlice.reducer;

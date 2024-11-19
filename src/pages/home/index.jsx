@@ -28,17 +28,16 @@ function Home() {
   );
   const [toastMsg, setToastMsg] = useState({
     status: "",
-    message: ""
-  })
-  const { isScenarioRunning, runningScenario, runningTag } = useSelector(
-    (state) => state.globalState
-  );
+    message: "",
+  });
 
   useEffect(() => {
-    if(!tagsList.length){
-      dispatch(fetchFeatureStepSlice({
-        url: localStorage.getItem('url')
-      }));
+    if (!tagsList.length) {
+      dispatch(
+        fetchFeatureStepSlice({
+          url: localStorage.getItem("url"),
+        })
+      );
     }
   }, [dispatch, tagsList.length]);
 
@@ -52,7 +51,7 @@ function Home() {
     setProgress(0); // Reset progress
     setSelectedTag(tag);
     setIsLogLoading(true);
-    setLogs([])
+    setLogs([]);
     return fetch(`${BASE_URL}/run/tag`, {
       method: "POST",
       headers: {
@@ -71,9 +70,9 @@ function Home() {
           if (done) {
             setIsLogLoading(false);
             setToastMsg({
-              status: 'success',
-              message:  `${tag} feature execution completed`
-            })
+              status: "success",
+              message: `${tag} feature execution completed`,
+            });
             return;
           }
           let receivedLength = 0; // Track received data length
@@ -107,9 +106,18 @@ function Home() {
   }, [logs]);
   const filterTags = tagsList.filter((item) => item.isActive);
 
-const renderToast = () => {
-  return toastMsg.message && <Toast onClear={(res)=>setToastMsg(res)} status={toastMsg.status} isOpen={true} message={toastMsg.message} />
-}
+  const renderToast = () => {
+    return (
+      toastMsg.message && (
+        <Toast
+          onClear={(res) => setToastMsg(res)}
+          status={toastMsg.status}
+          isOpen={true}
+          message={toastMsg.message}
+        />
+      )
+    );
+  };
 
   const renderCard = () => {
     let cardsList = !filterTags.length ? tagsList : filterTags;
@@ -131,17 +139,20 @@ const renderToast = () => {
       );
     });
   };
-  {error && <p>Error: {error}</p>}
-  if(loading){
-    return <div className="w-full flex justify-center items-center h-[90vh]">
+  {
+    error && <p>Error: {error}</p>;
+  }
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center items-center h-[90vh]">
         <span className=" loading loading-lg loading-ring text-info"></span>
-    </div>
+      </div>
+    );
   }
   return (
     <>
       <div className="grid gap-6 mb-6 flex-[0_1_0]">
         <div className="p-3">
-        
           {!tagsList.length ? (
             <div class="hero bg-base-200 min-h-[60vh]">
               <div class="hero-content text-center">
@@ -152,7 +163,32 @@ const renderToast = () => {
             </div>
           ) : (
             <>
-              <p class="capitalize mb-3 font-bold">Tags List </p>
+              <div className="flex justify-between">
+                <p class="capitalize mb-3 font-bold">Tags List </p>
+                <div className="flex gap-2">
+                  <button className="btn btn-outline btn-primary btn-sm">
+                    Run All{" "}
+                  </button>
+                  <button className="btn btn-outline btn-warning btn-sm">
+                    {" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 4H7a2 2 0 01-2-2V6a2 2 0 012-2h5l2 2h4a2 2 0 012 2v12a2 2 0 01-2 2z"
+                      />
+                    </svg>{" "}
+                    Report
+                  </button>
+                </div>
+              </div>
               <div className="flex">
                 <Chips chipsList={tagsList} onClickChip={handleChipClick} />
               </div>

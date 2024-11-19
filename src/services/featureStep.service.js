@@ -18,9 +18,9 @@ const featureStepService = async (body={}) => {
   }
 };
 
-const dataTableLineService = async (body) =>{
+const exampleTableLineService = async (body) =>{
   try {
-    const response = await axios.post(`${BASE_URL}/update/dataTableLine`, body, {
+    const response = await axios.post(`${BASE_URL}/update/exampleTableLine`, body, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -34,4 +34,4 @@ const dataTableLineService = async (body) =>{
   }
 }
 
-export { featureStepService, dataTableLineService };
+export { featureStepService, exampleTableLineService };
