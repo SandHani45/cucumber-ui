@@ -1,6 +1,6 @@
 import axios from "axios";
 import stepMock from './../mock/stepsMock.json'
-const BASE_URL = process.env.BACKEND_URL || "https://aefa-86-98-70-229.ngrok-free.app";
+const BASE_URL = process.env.REACT_APP_API_URL || "https://0aba-86-98-70-229.ngrok-free.app";
 const tagRunnerService = async ({tag}) => {
     return fetch(`${BASE_URL}/run/tag`, {
       method: "POST",

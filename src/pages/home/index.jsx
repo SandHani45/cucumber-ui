@@ -15,7 +15,7 @@ import { fetchRunnerAction } from "./../../features/runnerSlice";
 import { onRunningScenario } from "../../features/globalSlice";
 import Toast from "../../components/Toast";
 const BASE_URL =
-  process.env.BACKEND_URL || "https://aefa-86-98-70-229.ngrok-free.app";
+  process.env.BACKEND_URL || "https://0aba-86-98-70-229.ngrok-free.app";
 
 function Home() {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ function Home() {
             setIsLogLoading(false);
             setToastMsg({
               status: 'success',
-              message:  `${tag} feature executed successfully`
+              message:  `${tag} feature execution completed`
             })
             return;
           }

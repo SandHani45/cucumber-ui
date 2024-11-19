@@ -15,11 +15,11 @@ const Scenario = () => {
   const { isScenarioRunning, runningScenario, runningTag } = useSelector(
     (state) => state.globalState
   );
-  // useEffect(() => {
-  //   if (!featureStep.length) {
-  //    dispatch(fetchFeatureStepSlice());
-  //   }
-  // }, [featureStep.length, dispatch]);
+  useEffect(() => {
+    if (!Object.keys(featureStep)?.length) {
+     dispatch(fetchFeatureStepSlice({url:localStorage.getItem('url')}));
+    }
+  }, [Object.keys(featureStep)?.length, dispatch]);
 
   const onTestcaseRunner = useCallback(
     (tag, scenarioId) => {
@@ -30,7 +30,7 @@ const Scenario = () => {
 
   const steps =
     mapTagsFeaturesScenariosData && mapTagsFeaturesScenariosData[tagId];
-  const renderFeatureLine = useCallback(() => {
+  const renderFeatureLine = () => {
     return steps?.scenarioSteps?.map((scenario) => {
       const stepLine = scenario?.stepLines;
       const examples = scenario?.properties?.examples;
@@ -55,12 +55,16 @@ const Scenario = () => {
               );
             })}
           {!!examples?.length && (
-            <div className="py-3 px-5">{<AgTable examples={examples} />}</div>
+            <>
+              <p className="ml-5 mt-2 font-bold">Example: </p>
+              <div className="py-3 px-5">{<AgTable examples={examples} />}</div>
+            </>
+            
           )}
         </Accordion>
       );
     });
-  },[]);
+  };
   return (
     <div>
       {/* title section */}

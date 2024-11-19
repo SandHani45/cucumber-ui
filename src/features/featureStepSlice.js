@@ -9,9 +9,10 @@ export const fetchFeatureStepSlice = createAsyncThunk('tags/fetchFeatureSteps', 
 
 // Initial state
 const initialState = {
-  featureStep: [],
+  featureStep: {},
   tagsList:[],
   mapTagsFeaturesScenariosData: [],
+  projectId: "",
   loading: false,
   error: null,
 };
@@ -34,13 +35,14 @@ const featureStepSlice = createSlice({
       })
       .addCase(fetchFeatureStepSlice.fulfilled, (state, action) => {
         state.loading = false;
-        state.featureStep = action.payload;
-        state.tagsList =  action.payload?.TagLine?.map((tags)=>{
+        state.featureStep = action.payload.data;
+        state.tagsList =  action.payload?.data.TagLine?.map((tags)=>{
           return {
             ...tags, isAction: false
           }
         })
-        state.mapTagsFeaturesScenariosData = mapTagsFeaturesScenarios(action.payload)
+        state.projectId = action.payload.projectId
+        state.mapTagsFeaturesScenariosData = mapTagsFeaturesScenarios(action.payload.data)
       })
       .addCase(fetchFeatureStepSlice.rejected, (state, action) => {
         state.loading = false;

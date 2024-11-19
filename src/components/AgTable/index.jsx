@@ -1,46 +1,83 @@
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const AgTable = ({examples}) => {
+const AgTable = ({ examples }) => {
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState([]);
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs, setColDefs] = useState([]);
 
-  useEffect(()=>{
-    if(!examples) return
-    const col = examples[0]?.map(item=>{
-      return  { field: item?.toLowerCase(), editable: true }
-    })
-    const rowDif = examples.slice(1).map(subArray =>
-      subArray.reduce((acc, obj, index) => {
-        return { ...acc, [examples[0][index]?.toLowerCase()]: obj };
+  useEffect(() => {
+    if (!examples) return;
+    const col = examples[0]?.data?.map((item) => {
+      return { field: item?.toLowerCase(), editable: true };
+    });
+    const rowDif = examples?.slice(1).map((subArray) =>
+      subArray.data.reduce((acc, obj, index) => {
+        return { ...acc, [examples[0].data[index]?.toLowerCase()]: obj };
       }, {})
     );
-    setColDefs(col)
-    setRowData(rowDif)
-  },[examples])
+    setColDefs(col);
+    setRowData(rowDif);
+  }, [examples]);
+
+  // Grid API and Column API references
+  const gridRef = React.useRef(null);
+
+  // Function to add a new row
+  const addNewRow = () => {
+    let newRow = {};
+    for (const [key, value] of Object.entries(rowData[0])) {
+      newRow[key] = "";
+    }
+    // Access the grid API and add the new row to the grid
+    gridRef.current.api.applyTransaction({ add: [newRow] });
+    setRowData((prv) => [...prv, newRow]);
+  };
+  // Handle cell value changes
+  const onCellValueChanged = (event) => {
+    const updatedRowData = [...rowData]; // Make a copy of the row data
+    const { colDef, data } = event; // Get the column definition and updated row data
+    const updatedRowIndex = updatedRowData.findIndex((row) => row === data); // Find the row that was edited
+
+    if (updatedRowIndex !== -1) {
+      updatedRowData[updatedRowIndex] = {
+        ...updatedRowData[updatedRowIndex],
+        ...data,
+      }; // Update the edited row
+    }
+
+    setRowData(updatedRowData); // Update the state with the modified data
+  };
 
   return (
     // wrapping container with theme & size
     <div className="w-full">
-            <div
-      className="ag-theme-quartz custom-scrollbar" // applying the Data Grid theme
-      style={{ height: "auto", width: "auto" }}
-    >
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={colDefs}
-        domLayout="autoHeight" // setting the grid to auto height
-        onGridReady={(params) => {
-          params.api.sizeColumnsToFit(); // auto size columns to fit the grid width
-        }}
-      />
+      {/* Button to add new row */}
+      <div className="flex justify-end pb-2 gap-2">
+        <button className="btn btn-sm" onClick={addNewRow}>
+          Add
+        </button>
+        {/* <button disabled className="btn btn-sm  btn-primary" onClick={addNewRow}>Update</button> */}
+      </div>
+      <div
+        className="ag-theme-quartz custom-scrollbar" // applying the Data Grid theme
+        style={{ height: "auto", width: "auto" }}
+      >
+        <AgGridReact
+          ref={gridRef} // Reference to access grid API
+          rowData={rowData}
+          columnDefs={colDefs}
+          domLayout="autoHeight" // setting the grid to auto height
+          onGridReady={(params) => {
+            params.api.sizeColumnsToFit(); // auto size columns to fit the grid width
+          }}
+          onCellValueChanged={onCellValueChanged} // Event listener for cell value changes
+        />
+      </div>
     </div>
-    </div>
-
   );
 };
 export default AgTable;
