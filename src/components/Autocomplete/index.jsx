@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Autocomplete = ({ suggestions, placeholder="Search ....", label="Feature" }) => {
+const Autocomplete = ({ suggestions, placeholder="Search ....", label="Feature",onSelect }) => {
   const [query, setQuery] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
@@ -8,7 +8,7 @@ const Autocomplete = ({ suggestions, placeholder="Search ....", label="Feature" 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setQuery(inputValue);
-
+    onSelect(inputValue)
     if (inputValue) {
       // Filter suggestions based on the query
       const filtered = suggestions.filter((item) =>
@@ -24,6 +24,8 @@ const Autocomplete = ({ suggestions, placeholder="Search ....", label="Feature" 
   const handleSuggestionClick = (suggestion) => {
     setQuery(suggestion);
     setFilteredSuggestions([]);
+    onSelect(suggestion)
+
   };
 
   return (

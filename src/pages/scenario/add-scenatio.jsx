@@ -11,6 +11,8 @@ const AddScenario = () => {
   const { loading, error, featureStep } = useSelector((state) => state.featureStep);
   const [inputValue, setInputValue] = useState('');
   const [promptData, setPromptData] = useState([]);
+  const [arrData,setArrData] = useState([])
+  const [stepData,setStepData] = useState('')
 
   useEffect(() => {
     if (!featureStep.length) {
@@ -68,6 +70,10 @@ const AddScenario = () => {
     }
   };
 
+  const addSteps = async() => {
+    setArrData((data) => [...data,stepData] )
+  }
+
   return (
     <div className="p-4 flex flex-col items-start gap-4">
       <Link to="/" className="btn btn-sm btn-ghost">
@@ -79,7 +85,22 @@ const AddScenario = () => {
           <Autocomplete label="Feature" suggestions={suggestions.features} />
           <Autocomplete label="Tag" suggestions={suggestions.tags} />
           <Autocomplete label="Scenario" suggestions={suggestions.scenarios} />
-          <Autocomplete label="Steps" suggestions={suggestions.steps} />
+          <div className="flex items-center">
+           <Autocomplete label="Steps" suggestions={suggestions.steps} onSelect={(e) => {setStepData(e)}}/>
+            <button className="btn btn-sm ml-2" onClick={addSteps}>
+              Add
+            </button>
+          </div>
+          {arrData.length > 0 && (
+            <div className="mb-4">
+              <span className="font-bold">Selected Steps:</span>
+              <ul className="list-disc pl-4">
+                {arrData.map((data, index) => (
+                  <li key={index}>{data}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div className="w-full ml-5">
           <label className="form-control">
