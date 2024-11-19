@@ -74,6 +74,11 @@ const AddScenario = () => {
     setArrData((data) => [...data,stepData] )
   }
 
+  const handleDeleteStep = (index) => {
+    const newArrData = [...arrData];
+    newArrData.splice(index, 1);
+    setArrData(newArrData);
+  };
   return (
     <div className="p-4 flex flex-col items-start gap-4">
       <Link to="/" className="btn btn-sm btn-ghost">
@@ -95,9 +100,21 @@ const AddScenario = () => {
             <div className="mb-4">
               <span className="font-bold">Selected Steps:</span>
               <ul className="list-disc pl-4">
-                {arrData.map((data, index) => (
-                  <li key={index}>{data}</li>
-                ))}
+                {arrData.map((data, index) => {
+                  return (
+                    <>
+                    <div className='flex items-center' >
+                    <li key={index}>{data}</li>
+                    <button className="ml-2 text-red-500" onClick={() => handleDeleteStep(index)}>
+                  Delete
+                </button>
+                </div>
+                </>
+                  )
+                }
+                 
+                  
+                )}
               </ul>
             </div>
           )}
