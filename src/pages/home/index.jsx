@@ -97,6 +97,56 @@ function Home() {
         throw error;
       });
   }, []);
+
+  const handleRunAll = useCallback(() => {
+    setProgress(0); // Reset progress
+    setIsLogLoading(true);
+    setLogs([]);
+    return fetch(`${BASE_URL}/run/all`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        projectId: "sample-cucumber-test",
+      }),
+    })
+      .then((res) => {
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        const contentLength = res.headers.get("Content-Length");
+        return reader.read().then(function processtext({ done, value }) {
+          if (done) {
+            setIsLogLoading(false);
+            setToastMsg({
+              status: "success",
+              message: `All feature execution completed`,
+            });
+            return;
+          }
+          let receivedLength = 0; // Track received data length
+          const decoder = new TextDecoder("utf-8");
+          const chunk = decoder.decode(value, { stream: true });
+          if (chunk === "closed") {
+            setIsLogLoading(false);
+            return;
+          }
+          setLogs((prevLogs) => prevLogs + chunk);
+          receivedLength += value.length;
+          const progressPercentage = Math.min(
+            (receivedLength / contentLength) * 100,
+            100
+          );
+          setProgress(progressPercentage);
+          return reader.read().then(processtext);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching feature Step :", error);
+        throw error;
+      });
+  }, []);
+
   const onClickCard = useCallback(() => {}, []);
 
   useEffect(() => {
@@ -166,10 +216,10 @@ function Home() {
               <div className="flex justify-between">
                 <p class="capitalize mb-3 font-bold">Tags List </p>
                 <div className="flex gap-2">
-                  <button className="btn btn-outline btn-primary btn-sm">
-                    Run All{" "}
+                  <button className="btn btn-outline btn-primary btn-sm" onClick={()=>handleRunAll()}>
+                       {isLogLoading ? <span class="loading loading-spinner"></span> : "Run All"} 
                   </button>
-                  <button className="btn btn-outline btn-warning btn-sm">
+                  <button className="btn btn-outline btn-warning btn-sm" onClick={()=>{}}>
                     {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

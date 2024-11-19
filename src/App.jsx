@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/home"));
 const Scenario = lazy(()=>import("./pages/scenario"))
+const AddScenario = lazy(()=>import("./pages/scenario/add-scenatio"))
 // const LeapAI = lazy(() => import("./pages/leap-ai"));
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<Scenario />} path="/:tagId" />
+        <Route element={<AddScenario />} path="/add-scenario" />
       </Routes>
     </Suspense>
   );
